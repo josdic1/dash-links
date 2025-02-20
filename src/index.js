@@ -37,6 +37,9 @@ const init = () => {
     paid: 'all'
   }
 
+  console.log(import.meta.env.VITE_API_URL);
+
+
   //initial fetch
   fetchLinks()
 
@@ -354,7 +357,7 @@ const init = () => {
 
   async function fetchLinks() {
     try {
-      const r = await fetch(`${API_URL}/links`)
+      const r = await fetch(`${API_URL}/links`, { mode: 'no-cors' })
       if (!r.ok) {
         throw new Error('GET: bad request')
       }
