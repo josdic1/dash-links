@@ -1,9 +1,6 @@
 
 const init = () => {
 
-  //supabase
-  const SUPABASE_URL = "https://dnuvbkjnikexrysohxik.supabase.co";
-  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudXZia2puaWtleHJ5c29oeGlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwODYyNTMsImV4cCI6MjA1NTY2MjI1M30.qnafbgDghXIs2GB8uZqFUWXR_AO-94RiV7OKhSNccwk";
 
 
   //DOM elements
@@ -351,24 +348,17 @@ const init = () => {
     document.getElementById('inputPaid').checked = obj.paid;
   }
 
-  fetch(`${SUPABASE_URL}/rest/v1/links`, {
-    headers: {
-      "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`
-    }
-  })
+
 
   //async fucntions
   //GET
 
   async function fetchLinks() {
     try {
-      const r = await fetch(`${SUPABASE_URL}/rest/v1/links`, {
-        headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`
-        }
-      })
+      const r = await fetch(`http://localhost:3000/links`)
+      if (!r.ok) {
+        throw new Error('GET: bad request')
+      }
       const data = await r.json()
       links = data
       renderList(data)
@@ -380,17 +370,12 @@ const init = () => {
 
   async function handleNewLink(newObj) {
     try {
-      const r = await fetch(`${SUPABASE_URL}/rest/v1/links`, {
-        method: "POST",
+      const r = await fetch(`http://localhost:3000/links`, {
+        method: 'POST',
         headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          name: "Google",
-          url: "https://google.com"
-        })
+        body: JSON.stringify(newObj)
       })
       if (!r.ok) {
         throw new Error('POST: bad request')
@@ -402,12 +387,8 @@ const init = () => {
 
   async function handleDelete(obj) {
     try {
-      const r = await fetch(`${SUPABASE_URL}/rest/v1/links?id=eq.1`, {
-        method: "DELETE",
-        headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`
-        }
+      const r = await fetch(`http://localhost:3000/links/${obj.id}`, {
+        method: 'DELETE'
       })
       if (!r.ok) {
         throw new Error('DELETE: bad request')

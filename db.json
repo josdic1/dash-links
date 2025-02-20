@@ -71,6 +71,22 @@
       "type": "code",
       "description": "Persists JSON data on hosted site",
       "paid": false
+    },
+    {
+      "id": "9f96",
+      "title": "render",
+      "url": "https://dashboard.render.com/",
+      "type": "code",
+      "description": "Backend hosting for app",
+      "paid": false
+    },
+    {
+      "id": "2d86",
+      "title": "supabase",
+      "url": "https://supabase.com/dashboard/projects",
+      "type": "code",
+      "description": "Backend hosting for app",
+      "paid": false
     }
   ]
 }
