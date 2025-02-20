@@ -45,6 +45,7 @@ const init = () => {
   //render header
 
 
+  console.log("App is running on Vercel!");
 
 
   //render form
