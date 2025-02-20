@@ -8,7 +8,6 @@ const init = () => {
   const list = document.getElementById('list')
 
   //stateful variables
-  const API_URL = import.meta.env.VITE_API_URL;
 
   let inEditMode = false
 
@@ -36,9 +35,6 @@ const init = () => {
     type: 'all',
     paid: 'all'
   }
-
-  console.log(import.meta.env.VITE_API_URL);
-
 
   //initial fetch
   fetchLinks()
@@ -357,7 +353,7 @@ const init = () => {
 
   async function fetchLinks() {
     try {
-      const r = await fetch(`${API_URL}/links`, { mode: 'no-cors' })
+      const r = await fetch(`http://localhost:3000/links`)
       if (!r.ok) {
         throw new Error('GET: bad request')
       }
@@ -372,7 +368,7 @@ const init = () => {
 
   async function handleNewLink(newObj) {
     try {
-      const r = await fetch(`${API_URL}/links`, {
+      const r = await fetch(`http://localhost:3000/links`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -389,7 +385,7 @@ const init = () => {
 
   async function handleDelete(obj) {
     try {
-      const r = await fetch(`${API_URL}/${obj.id}`, {
+      const r = await fetch(`http://localhost:3000/links/${obj.id}`, {
         method: 'DELETE'
       })
       if (!r.ok) {
@@ -401,7 +397,7 @@ const init = () => {
 
   async function handleUpdatedLink(updatedObj) {
     try {
-      const r = await fetch(`${API_URL}/links/${updatedObj.id}`, {
+      const r = await fetch(`http://localhost:3000/links/${updatedObj.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
