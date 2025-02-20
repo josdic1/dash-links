@@ -1,5 +1,6 @@
-const jsonServer = require('json-server');
-const { Pool } = require('pg');
+import jsonServer from 'json-server';
+import pkg from 'pg';
+const { Pool } = pkg;
 
 const server = jsonServer.create();
 const middlewares = jsonServer.defaults();
