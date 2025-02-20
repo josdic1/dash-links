@@ -353,7 +353,7 @@ const init = () => {
 
   async function fetchLinks() {
     try {
-      const r = await fetch(`http://localhost:3000/links`)
+      const r = await fetch(`https://json-server-d6wz.onrender.com/links`)
       if (!r.ok) {
         throw new Error('GET: bad request')
       }
@@ -368,7 +368,7 @@ const init = () => {
 
   async function handleNewLink(newObj) {
     try {
-      const r = await fetch(`http://localhost:3000/links`, {
+      const r = await fetch(`https://json-server-d6wz.onrender.com/links`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -385,7 +385,7 @@ const init = () => {
 
   async function handleDelete(obj) {
     try {
-      const r = await fetch(`http://localhost:3000/links/${obj.id}`, {
+      const r = await fetch(`https://json-server-d6wz.onrender.com/links/${obj.id}`, {
         method: 'DELETE'
       })
       if (!r.ok) {
@@ -397,7 +397,7 @@ const init = () => {
 
   async function handleUpdatedLink(updatedObj) {
     try {
-      const r = await fetch(`http://localhost:3000/links/${updatedObj.id}`, {
+      const r = await fetch(`https://json-server-d6wz.onrender.com/links/${updatedObj.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
